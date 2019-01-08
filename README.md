@@ -4,6 +4,8 @@
 
 ## Build Setup
 
+## 大家不要直接跑，需要开通云开发，需要建立集合，上手前记得先熟悉云开发文档
+
 ``` bash
 # install dependencies
 npm install
