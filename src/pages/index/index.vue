@@ -4,7 +4,7 @@
             <index-swiper :list="list"></index-swiper>
         </div>
         <image class="inv" src="../../static/images/inv.png"/>
-        <div class="bg_music" v-if="isPlay" @tap="audioPlay">
+        <div class="bg_music" v-if="isIphone" @tap="audioPlay">
             <image src="../../static/images/music_icon.png" class="musicImg music_icon"/>
             <image src="../../static/images/music_play.png" class="music_play pauseImg"/>
         </div>
@@ -22,13 +22,13 @@
                 <image src="../../static/images/we.png" class="img_footer"/>
             </div>
         </div>
+        <audio id="myAudio" :src="audioUrl" autoplay loop></audio>
     </div>
 </template>
 
 <script>
 import IndexSwiper from 'components/indexSwiper'
 import tools from 'common/js/h_tools'
-const audioCtx = wx.createInnerAudioContext()
 export default {
   name: 'Index',
   components: {
@@ -36,26 +36,29 @@ export default {
   },
   data () {
     return {
-      isPlay: true,
-      list: []
+      isIphone: true,
+      list: [],
+      audioCtx: '',
+      audioUrl: ''
     }
   },
   onShow () {
     const that = this
-    that.isPlay = true
+    that.audioCtx = wx.createAudioContext('myAudio')
+    that.isIphone = true
     that.getMusicUrl()
   },
 
   methods: {
     audioPlay () {
       const that = this
-      if (that.isPlay) {
-        audioCtx.pause()
-        that.isPlay = false
+      if (that.isIphone) {
+        that.audioCtx.pause()
+        that.isIphone = false
         tools.showToast('您已暂停音乐播放~')
       } else {
-        audioCtx.play()
-        that.isPlay = true
+        that.audioCtx.play()
+        that.isIphone = true
         tools.showToast('背景音乐已开启~')
       }
     },
@@ -66,6 +69,7 @@ export default {
       const banner = db.collection('banner')
       banner.get().then(res => {
         that.list = res.data[0].bannerList
+        console.log(that.list)
       })
     },
 
@@ -74,11 +78,8 @@ export default {
       const db = wx.cloud.database()
       const music = db.collection('music')
       music.get().then(res => {
-        let musicUrl = res.data[0].musicUrl
-        audioCtx.src = musicUrl
-        audioCtx.loop = true
-        audioCtx.autoplay = true
-        audioCtx.play()
+        that.audioUrl = res.data[0].musicUrl
+        that.audioCtx.play()
         that.getList()
       })
     }
@@ -188,4 +189,19 @@ export default {
         z-index 99
         height 14rpx
         width 520rpx
+  #myAudio
+    display none
+  .loading-container
+    position fixed
+    width 100%
+    height 100%
+    top 0
+    bottom 0
+    left 0
+    right 0
+    background #fff
+    margin auto
+    display flex
+    justify-content center
+    align-items center
 </style>
