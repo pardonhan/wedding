@@ -4,7 +4,7 @@
             <index-swiper :list="list"></index-swiper>
         </div>
         <image class="inv" src="../../static/images/inv.png"/>
-        <div class="bg_music" v-if="isIphone" @tap="audioPlay">
+        <div class="bg_music" v-if="isPlay" @tap="audioPlay">
             <image src="../../static/images/music_icon.png" class="musicImg music_icon"/>
             <image src="../../static/images/music_play.png" class="music_play pauseImg"/>
         </div>
@@ -36,7 +36,7 @@ export default {
   },
   data () {
     return {
-      isIphone: true,
+      isPlay: true,
       list: [],
       audioCtx: '',
       audioUrl: ''
@@ -45,20 +45,20 @@ export default {
   onShow () {
     const that = this
     that.audioCtx = wx.createAudioContext('myAudio')
-    that.isIphone = true
+    that.isPlay = true
     that.getMusicUrl()
   },
 
   methods: {
     audioPlay () {
       const that = this
-      if (that.isIphone) {
+      if (that.isPlay) {
         that.audioCtx.pause()
-        that.isIphone = false
+        that.isPlay = false
         tools.showToast('您已暂停音乐播放~')
       } else {
         that.audioCtx.play()
-        that.isIphone = true
+        that.isPlay = true
         tools.showToast('背景音乐已开启~')
       }
     },
