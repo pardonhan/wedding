@@ -1,6 +1,7 @@
 <script>
 export default {
   onLaunch () {
+    console.log('111')
     // 检测小程序是否有新版本更新
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()

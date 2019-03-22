@@ -6,13 +6,15 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"checkInvalidKey": true
 	},
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
-	"appid": "小程序appID",
+	"appid": "wxde142b637620cc1f",
 	"projectname": "photo",
 	"cloudfunctionRoot": "static/functions/",
+	"libVersion": "2.6.2",
 	"condition": {
 		"search": {
 			"current": -1,

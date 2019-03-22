@@ -14,11 +14,11 @@
         </div>
         <div class="info" :animation="animationData">
             <div class="content">
-                <h1>Mr.黄 & Miss.梅</h1>
-                <p>谨定于 2019年2月2日 （星期六）中午12:00</p>
-                <p>农历 腊月二十八 中午十二点整 举办婚礼</p>
-                <p>席设：黄梅县天下禅大酒店锦园三厅</p>
-                <p>地址：黄冈市黄梅县黄梅大道777号</p>
+                <h1>Mr.韩 & Miss.梅</h1>
+                <p>谨定于 2019年5月12日 （星期天）中午12:00</p>
+                <p>农历 四月初八 中午十二点整 举办婚礼</p>
+                <p>席设：长清区舜耕大酒店</p>
+                <p>地址：济南市长清区龙泉街532号</p>
                 <image src="../../static/images/we.png" class="img_footer"/>
             </div>
         </div>
@@ -67,8 +67,10 @@ export default {
       const that = this
       const db = wx.cloud.database()
       const banner = db.collection('banner')
+      console.log('banner')
       banner.get().then(res => {
         that.list = res.data[0].bannerList
+        console.log('that.list')
         console.log(that.list)
       })
     },
@@ -79,6 +81,7 @@ export default {
       const music = db.collection('music')
       music.get().then(res => {
         that.audioUrl = res.data[0].musicUrl
+        console.log(that.audioUrl)
         that.audioCtx.play()
         that.getList()
       })

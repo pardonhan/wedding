@@ -5,8 +5,9 @@ Vue.config.productionTip = false
 App.mpType = 'app'
 
 wx.cloud.init({
-  env: '云开发环境ID'
+  env: 'wedding-3a03a2'
 })
 
 const app = new Vue(App)
 app.$mount()
+console.log('1111')

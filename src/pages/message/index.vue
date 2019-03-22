@@ -179,6 +179,7 @@ export default {
       const that = this
       const db = wx.cloud.database()
       const user = db.collection('user')
+      console.log(that.userInfo)
       user.add({
         data: {
           user: that.userInfo

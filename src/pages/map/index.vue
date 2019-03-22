@@ -1,7 +1,7 @@
 <template>
     <div class="map">
         <image mode="aspectFit" class="head-img" src="../../static/images/t1.png"/>
-        <map class="content" id="map" longitude="115.93027" latitude="30.08059" :markers="markers" scale="18" @tap="toNav">
+        <map class="content" id="map" longitude="116.761380" latitude="36.544390" :markers="markers" scale="18" @tap="toNav">
         </map>
         <div class="call">
             <div class="left" @tap="linkHe">
@@ -27,8 +27,8 @@ export default {
       markers: [{
         iconPath: '../../static/images/nav.png',
         id: 0,
-        latitude: 30.08059,
-        longitude: 115.93027,
+        latitude: 36.544390,
+        longitude: 116.761380,
         width: 50,
         height: 50
       }]
@@ -38,21 +38,21 @@ export default {
   methods: {
     toNav () {
       wx.openLocation({
-        latitude: 30.08059,
-        longitude: 115.93027,
+        latitude: 36.544390,
+        longitude: 116.761380,
         scale: 18
       })
     },
 
     linkHe () {
       wx.makePhoneCall({
-        phoneNumber: '18358274764'
+        phoneNumber: '13853195597'
       })
     },
 
     linkShe () {
       wx.makePhoneCall({
-        phoneNumber: '17855847639'
+        phoneNumber: '15910109301'
       })
     }
   }
